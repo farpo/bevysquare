@@ -247,13 +247,12 @@ fn spawn_enemy(
         return;
     }
     events.clear();
-    println!("Enemy spawned");
     let square_mesh = meshes.add(Rectangle::new(SQUARE_SIZE, SQUARE_SIZE));
     let red = materials.add(Color::linear_rgb(1., 0., 0.));
     let res = &windows.single().unwrap().resolution;
     let transform = make_random_position(
-        -(res.width() / 2.)..res.width() / 2.,
-        -(res.height() / 2.)..res.height() / 2.,
+        width_range(res),
+        heigth_range(res),
     );
     let velocity = make_random_velocity();
     commands.spawn((
